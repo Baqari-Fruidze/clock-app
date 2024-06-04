@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import styled from "styled-components";
+import { Tquote } from "./types.ts/Quote";
+import { useEffect } from "react";
+import dayMobile from "/assets/mobile/bg-image-daytime.jpg";
+import { useState } from "react";
+import Head from "./components/Head";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [quote, setQuote] = useState<Tquote>({
+    author: "",
+    authorSlug: "",
+    content: "",
+    dateAdded: "",
+    dateModified: "",
+    length: 0,
+    tags: [],
+    id: "",
+  });
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Parent>
+      <Head setQuote={setQuote} quote={quote} />
+    </Parent>
+  );
 }
 
-export default App
+const Parent = styled.div`
+  padding: 3.2rem 2.5rem 4rem 2.6rem;
+  background-image: url(${dayMobile});
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+export default App;
