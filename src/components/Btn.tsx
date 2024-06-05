@@ -11,15 +11,15 @@ export default function Btn({
 }) {
   return (
     <Con onClick={() => setShowMore(!showMore)} showMore={showMore}>
-      <span>MORE</span>
-      <Circle>
+      <span>{showMore ? "LESS" : "MORE"} </span>
+      <Circle showMore={showMore}>
         <img src={arrowDown} alt="" />
       </Circle>
     </Con>
   );
 }
 
-const Circle = styled.div`
+const Circle = styled.div<{ showMore: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,6 +30,9 @@ const Circle = styled.div`
   @media (min-width: 90rem) {
     width: 4rem;
     height: 4rem;
+  }
+  & img {
+    transform: ${(props) => (props.showMore ? null : "rotate(180deg)")};
   }
 `;
 const Con = styled.div<{ showMore: boolean }>`
