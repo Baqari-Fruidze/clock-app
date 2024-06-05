@@ -16,7 +16,6 @@ export default function Head({
     const info = await res.json();
     setQuote(info);
   }
-  console.log(quote);
   useEffect(() => {
     quotesFetch();
   }, []);
@@ -24,7 +23,7 @@ export default function Head({
     <Container>
       <QuoteCon>
         <p>{quote.content}</p>
-        <img src={refreshIcon} alt="" />
+        <img src={refreshIcon} alt="" onClick={() => quotesFetch()} />
       </QuoteCon>
       <Para>{quote.author}</Para>
     </Container>
@@ -44,6 +43,7 @@ const QuoteCon = styled.div`
   display: flex;
   justify-content: space-between;
   & > p {
+    width: 45ch;
     color: #fff;
     font-family: Inter;
     font-size: 12px;
