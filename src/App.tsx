@@ -3,6 +3,8 @@ import { Tquote } from "./types.ts/Quote";
 import { useEffect } from "react";
 import dayMobile from "/assets/mobile/bg-image-daytime.jpg";
 import nightMobile from "/assets/mobile/bg-image-nighttime.jpg";
+import dayTablet from "/assets/tablet/bg-image-daytime.jpg";
+import nightTablet from "/assets/tablet/bg-image-nighttime.jpg";
 import sunIcon from "/assets/desktop/icon-sun.svg";
 import moonIcon from "/assets/desktop/icon-moon.svg";
 import { useState } from "react";
@@ -10,8 +12,10 @@ import Head from "./components/Head";
 import { TtimeData } from "./types.ts/Time";
 import Btn from "./components/Btn";
 import Foot from "./components/Foot";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 function App() {
+  const textToShow = useMediaQuery("only screen and (min-width : 768px)");
   const [showMore, setShowMore] = useState<boolean>(false);
   const [day, setDay] = useState<boolean>(false);
   const [data, setData] = useState<TtimeData>({
@@ -61,7 +65,11 @@ function App() {
         <TimeCon>
           <SunCon onClick={() => setDay(!day)}>
             {day ? <img src={moonIcon} alt="" /> : <img src={sunIcon} alt="" />}
-            {day ? <p>GOOD EVENING </p> : <p>GOOD MORNING</p>}
+            {day ? (
+              <p>GOOD EVENING {textToShow ? ", IT’S CURRENTLY " : null} </p>
+            ) : (
+              <p>GOOD MORNING {textToShow ? ", IT’S CURRENTLY " : null}</p>
+            )}
           </SunCon>
           <CurrentTimeCon>
             <span>{data.datetime.slice(11, 16)}</span> <p>BST</p>
@@ -78,7 +86,6 @@ function App() {
     </Parent>
   );
 }
-const Common = styled.div``;
 const LocationCon = styled.div`
   display: flex;
   align-items: center;
@@ -91,6 +98,16 @@ const LocationCon = styled.div`
     line-height: 28px; /* 186.667% */
     letter-spacing: 3px;
     text-transform: uppercase;
+    @media (min-width: 48rem) {
+      color: #fff;
+      font-family: Inter;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 28px; /* 155.556% */
+      letter-spacing: 3.6px;
+      text-transform: uppercase;
+    }
   }
 `;
 const CurrentTimeCon = styled.div`
@@ -103,6 +120,15 @@ const CurrentTimeCon = styled.div`
     font-weight: 700;
     line-height: 100px; /* 100% */
     letter-spacing: -2.5px;
+    @media (min-width: 48rem) {
+      color: #fff;
+      font-family: Inter;
+      font-size: 175px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 175px; /* 100% */
+      letter-spacing: -4.375px;
+    }
   }
   & p {
     color: #fff;
@@ -113,6 +139,15 @@ const CurrentTimeCon = styled.div`
     line-height: 28px; /* 186.667% */
     text-transform: uppercase;
     align-self: self-end;
+    @media (min-width: 48rem) {
+      color: #fff;
+      font-family: Inter;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 28px; /* 87.5% */
+      text-transform: uppercase;
+    }
   }
 `;
 const SunCon = styled.div`
@@ -128,17 +163,33 @@ const SunCon = styled.div`
     line-height: 25px; /* 166.667% */
     letter-spacing: 3px;
     text-transform: uppercase;
+    @media (min-width: 48rem) {
+      color: #fff;
+      font-family: Inter;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 28px; /* 155.556% */
+      letter-spacing: 3.6px;
+      text-transform: uppercase;
+    }
   }
 `;
 const TimeCon = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  @media (min-width: 48rem) {
+    gap: 0;
+  }
 `;
 const TimeAndBtnCon = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4.8rem;
+  @media (min-width: 48rem) {
+    gap: 8rem;
+  }
 `;
 const Parent = styled.div<{ day: boolean; showMore: boolean }>`
   min-height: 100vh;
@@ -159,6 +210,12 @@ const Parent = styled.div<{ day: boolean; showMore: boolean }>`
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: -1;
+  }
+  @media (min-width: 48rem) {
+    padding: ${(props) =>
+      props.showMore ? "15.3rem 2rem 2rem 6.4rem" : "8rem 13rem 6.4rem 6.4rem"};
+    background-image: ${(props) =>
+      props.day ? ` url(${nightTablet})` : `url(${dayTablet})`};
   }
 `;
 export default App;

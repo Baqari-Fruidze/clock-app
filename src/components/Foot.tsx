@@ -36,6 +36,14 @@ const Para = styled.p`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  @media (min-width: 48rem) {
+    color: #303030;
+    font-family: Inter;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 `;
 const Span = styled.span`
   color: #fff;
@@ -46,6 +54,16 @@ const Span = styled.span`
   line-height: 28px; /* 280% */
   letter-spacing: 2px;
   text-transform: uppercase;
+  @media (min-width: 48rem) {
+    color: #303030;
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px; /* 215.385% */
+    letter-spacing: 2.6px;
+    text-transform: uppercase;
+  }
 `;
 const Mini = styled.div`
   display: flex;
@@ -68,4 +86,7 @@ const Parent = styled.div<{ day: boolean }>`
   flex-direction: column;
   gap: 1.6rem;
   padding: 4.8rem 2.6rem;
+  @media (min-width: 48rem) {
+    padding: 12rem 16.8rem 12rem 6.4rem;
+  }
 `;

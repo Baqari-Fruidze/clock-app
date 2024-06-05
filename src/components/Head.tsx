@@ -38,7 +38,15 @@ const Para = styled.p`
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
-  line-height: 22px; /* 183.333% */
+  line-height: 22px;
+  @media (min-width: 48rem) {
+    color: #fff;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+  }
 `;
 const QuoteCon = styled.div`
   align-items: center;
@@ -52,6 +60,15 @@ const QuoteCon = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 22px;
+    @media (min-width: 48rem) {
+      width: 70ch;
+      color: #fff;
+      font-family: Inter;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 28px; /* 155.556% */
+    }
   }
   & img {
     align-self: self-start;
@@ -61,4 +78,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  @media (min-width: 48rem) {
+    gap: 1.3rem;
+  }
 `;
