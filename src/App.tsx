@@ -13,6 +13,8 @@ import { TtimeData } from "./types.ts/Time";
 import Btn from "./components/Btn";
 import Foot from "./components/Foot";
 import { useMediaQuery } from "@uidotdev/usehooks";
+import nightDesktop from "/assets/desktop/bg-image-nighttime.jpg";
+import dayDesktop from "/assets/desktop/bg-image-daytime.jpg";
 
 function App() {
   const textToShow = useMediaQuery("only screen and (min-width : 768px)");
@@ -108,6 +110,16 @@ const LocationCon = styled.div`
       letter-spacing: 3.6px;
       text-transform: uppercase;
     }
+    @media (min-width: 90rem) {
+      color: #fff;
+      font-family: Inter;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 28px; /* 116.667% */
+      letter-spacing: 4.8px;
+      text-transform: uppercase;
+    }
   }
 `;
 const CurrentTimeCon = styled.div`
@@ -129,6 +141,15 @@ const CurrentTimeCon = styled.div`
       line-height: 175px; /* 100% */
       letter-spacing: -4.375px;
     }
+    @media (min-width: 90rem) {
+      color: #fff;
+      font-family: Inter;
+      font-size: 200px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 200px; /* 100% */
+      letter-spacing: -5px;
+    }
   }
   & p {
     color: #fff;
@@ -146,6 +167,15 @@ const CurrentTimeCon = styled.div`
       font-style: normal;
       font-weight: 300;
       line-height: 28px; /* 87.5% */
+      text-transform: uppercase;
+    }
+    @media (min-width: 90rem) {
+      color: #fff;
+      font-family: Inter;
+      font-size: 40px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 28px; /* 70% */
       text-transform: uppercase;
     }
   }
@@ -173,6 +203,16 @@ const SunCon = styled.div`
       letter-spacing: 3.6px;
       text-transform: uppercase;
     }
+    @media (min-width: 90rem) {
+      color: #fff;
+      font-family: Inter;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 28px; /* 140% */
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
   }
 `;
 const TimeCon = styled.div`
@@ -189,6 +229,10 @@ const TimeAndBtnCon = styled.div`
   gap: 4.8rem;
   @media (min-width: 48rem) {
     gap: 8rem;
+  }
+  @media (min-width: 90rem) {
+    flex-direction: row;
+    justify-content: space-between;
   }
 `;
 const Parent = styled.div<{ day: boolean; showMore: boolean }>`
@@ -216,6 +260,11 @@ const Parent = styled.div<{ day: boolean; showMore: boolean }>`
       props.showMore ? "15.3rem 2rem 2rem 6.4rem" : "8rem 13rem 6.4rem 6.4rem"};
     background-image: ${(props) =>
       props.day ? ` url(${nightTablet})` : `url(${dayTablet})`};
+  }
+  @media (min-width: 90rem) {
+    background-image: ${(props) =>
+      props.day ? ` url(${nightDesktop})` : `url(${dayDesktop})`};
+    padding: 5.6rem 16.5rem 9.6rem 16.5rem;
   }
 `;
 export default App;

@@ -43,6 +43,15 @@ const Para = styled.p`
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    align-self: self-start;
+  }
+  @media (min-width: 90rem) {
+    color: #303030;
+    font-family: Inter;
+    font-size: 56px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 `;
 const Span = styled.span`
@@ -64,15 +73,33 @@ const Span = styled.span`
     letter-spacing: 2.6px;
     text-transform: uppercase;
   }
+  @media (min-width: 90rem) {
+    color: #303030;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px; /* 186.667% */
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
 `;
 const Mini = styled.div`
   display: flex;
   justify-content: space-between;
+  @media (min-width: 48rem) {
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 const TimeZoneDay = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  @media (min-width: 48rem) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 const Parent = styled.div<{ day: boolean }>`
   position: absolute;
@@ -88,5 +115,10 @@ const Parent = styled.div<{ day: boolean }>`
   padding: 4.8rem 2.6rem;
   @media (min-width: 48rem) {
     padding: 12rem 16.8rem 12rem 6.4rem;
+    gap: 4.9rem;
+  }
+  @media (min-width: 90rem) {
+    padding: 7.4rem 43rem 7.4rem 16.5rem;
+    gap: 4.2rem;
   }
 `;

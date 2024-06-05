@@ -27,6 +27,10 @@ const Circle = styled.div`
   width: 3.2rem;
   height: 3.2rem;
   border-radius: 50%;
+  @media (min-width: 90rem) {
+    width: 4rem;
+    height: 4rem;
+  }
 `;
 const Con = styled.div<{ showMore: boolean }>`
   margin-bottom: ${(props) => (props.showMore ? "4rem " : null)};
@@ -37,6 +41,11 @@ const Con = styled.div<{ showMore: boolean }>`
   width: 11.5rem;
   border-radius: 28px;
   background: #fff;
+  @media (min-width: 90rem) {
+    padding: 0.8rem 0.9rem 0.8rem 2.1rem;
+    width: 14.6rem;
+    align-self: self-end;
+  }
   & span {
     color: #000;
     font-family: Inter;
@@ -47,5 +56,15 @@ const Con = styled.div<{ showMore: boolean }>`
     letter-spacing: 3.75px;
     text-transform: uppercase;
     opacity: 0.5;
+    @media (min-width: 90rem) {
+      color: #000;
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 28px; /* 175% */
+      letter-spacing: 5px;
+      text-transform: uppercase;
+    }
   }
 `;

@@ -52,6 +52,10 @@ const QuoteCon = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
+  @media (min-width: 90rem) {
+    gap: 1.3rem;
+    justify-content: start;
+  }
   & > p {
     width: 45ch;
     color: #fff;
@@ -68,6 +72,9 @@ const QuoteCon = styled.div`
       font-style: normal;
       font-weight: 400;
       line-height: 28px; /* 155.556% */
+      @media (min-width: 90rem) {
+        width: 60ch;
+      }
     }
   }
   & img {
