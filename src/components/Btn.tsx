@@ -2,9 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import arrowDown from "/assets/desktop/icon-arrow-down.svg";
 
-export default function Btn() {
+export default function Btn({
+  showMore,
+  setShowMore,
+}: {
+  showMore: boolean;
+  setShowMore: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   return (
-    <Con>
+    <Con onClick={() => setShowMore(!showMore)} showMore={showMore}>
       <span>MORE</span>
       <Circle>
         <img src={arrowDown} alt="" />
@@ -22,7 +28,8 @@ const Circle = styled.div`
   height: 3.2rem;
   border-radius: 50%;
 `;
-const Con = styled.div`
+const Con = styled.div<{ showMore: boolean }>`
+  margin-bottom: ${(props) => (props.showMore ? "4rem " : null)};
   display: flex;
   justify-content: space-between;
   align-items: center;

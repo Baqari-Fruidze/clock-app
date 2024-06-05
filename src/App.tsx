@@ -4,12 +4,15 @@ import { useEffect } from "react";
 import dayMobile from "/assets/mobile/bg-image-daytime.jpg";
 import nightMobile from "/assets/mobile/bg-image-nighttime.jpg";
 import sunIcon from "/assets/desktop/icon-sun.svg";
+import moonIcon from "/assets/desktop/icon-moon.svg";
 import { useState } from "react";
 import Head from "./components/Head";
 import { TtimeData } from "./types.ts/Time";
 import Btn from "./components/Btn";
+import Foot from "./components/Foot";
 
 function App() {
+  const [showMore, setShowMore] = useState<boolean>(false);
   const [day, setDay] = useState<boolean>(false);
   const [data, setData] = useState<TtimeData>({
     abbreviation: "",
@@ -47,17 +50,18 @@ function App() {
     tags: [],
     id: "",
   });
-  console.log(data);
   const locationCity = data.timezone.split("/")[1];
   const locationContinent = data.timezone.split("/")[0];
   return (
-    <Parent>
-      <Head setQuote={setQuote} quote={quote} />
+    <Parent day={day} showMore={showMore}>
+      {showMore ? null : (
+        <Head setQuote={setQuote} quote={quote} showMore={showMore} />
+      )}
       <TimeAndBtnCon>
         <TimeCon>
-          <SunCon>
-            <img src={sunIcon} alt="" />
-            <p>GOOD MORNING</p>
+          <SunCon onClick={() => setDay(!day)}>
+            {day ? <img src={moonIcon} alt="" /> : <img src={sunIcon} alt="" />}
+            {day ? <p>GOOD EVENING </p> : <p>GOOD MORNING</p>}
           </SunCon>
           <CurrentTimeCon>
             <span>{data.datetime.slice(11, 16)}</span> <p>BST</p>
@@ -68,11 +72,13 @@ function App() {
             </span>
           </LocationCon>
         </TimeCon>
-        <Btn />
+        <Btn showMore={showMore} setShowMore={setShowMore} />
       </TimeAndBtnCon>
+      {showMore ? <Foot data={data} day={day} /> : null}
     </Parent>
   );
 }
+const Common = styled.div``;
 const LocationCon = styled.div`
   display: flex;
   align-items: center;
@@ -134,15 +140,17 @@ const TimeAndBtnCon = styled.div`
   flex-direction: column;
   gap: 4.8rem;
 `;
-const Parent = styled.div`
-  /* min-height: 100vh; */
+const Parent = styled.div<{ day: boolean; showMore: boolean }>`
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: ${(props) => (props.showMore ? null : "space-between")};
   z-index: 2;
   position: relative;
-  padding: 3.2rem 2.5rem 4rem 2.6rem;
-  background-image: url(${dayMobile});
+  padding: ${(props) =>
+    props.showMore ? " 10rem 2.5rem 4rem 2.6rem" : "3.2rem 2.5rem 4rem 2.6rem"};
+  background-image: ${(props) =>
+    props.day ? ` url(${nightMobile})` : `url(${dayMobile})`};
   background-repeat: no-repeat;
   background-size: cover;
   &::before {

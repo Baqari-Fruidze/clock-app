@@ -7,9 +7,11 @@ import refreshIcon from "/assets/desktop/icon-refresh.svg";
 export default function Head({
   setQuote,
   quote,
+  showMore,
 }: {
   setQuote: React.Dispatch<React.SetStateAction<Tquote>>;
   quote: Tquote;
+  showMore: boolean;
 }) {
   async function quotesFetch() {
     const res = await fetch("https://api.quotable.io/random");
@@ -50,6 +52,9 @@ const QuoteCon = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 22px;
+  }
+  & img {
+    align-self: self-start;
   }
 `;
 const Container = styled.div`
